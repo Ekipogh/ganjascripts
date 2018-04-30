@@ -69,8 +69,8 @@
             //format date to string
             var date_start = date_picker_start.valueAsDate;
             var date_end = date_picker_end.valueAsDate;
-            var date_string_start = date_start.getDate() + "." + ("00" + (date_start.getMonth() + 1)).slice(-2) + "." + (date_start.getFullYear() - 2000);
-            var date_string_end = date_end.getDate() + "." + ("00" + (date_end.getMonth() + 1)).slice(-2) + "." + (date_end.getFullYear() - 2000);
+            /*var date_string_start = date_start.getDate() + "." + ("00" + (date_start.getMonth() + 1)).slice(-2) + "." + (date_start.getFullYear() - 2000);
+            var date_string_end = date_end.getDate() + "." + ("00" + (date_end.getMonth() + 1)).slice(-2) + "." + (date_end.getFullYear() - 2000);*/
             // functions
             function process_page(object_id, page_id){
                 var page_url = "http://www.ganjawars.ru/object-pts-log.php?id="+object_id +"&page_id="+page_id;
@@ -90,11 +90,16 @@
                         reg.lastIndex++;
                     }
                     var date = m[1];
+                    // date string to Date
+                    var year = date.slice(-2);
+                    var month = date.slice(3,5);
+                    var day = date.slice(0,2);
+                    date = new Date(parseInt(year) + 2000, month - 1, day);
                     var synd = m[2];
                     var pts = m[3];
                     var money = m[5];
                     // check date
-                    if(date <= date_string_start && date > date_string_end){
+                    if(date <= date_start && date > date_end){
                         // date is fine collecting results
                         if(result[synd] == undefined){
                             result[synd] = {};
@@ -105,8 +110,9 @@
                         result[synd].money += parseInt(money);
                     }
                     // out of range
-                    else if(date < date_string_end){
+                    else if(date < date_end){
                         running = false;
+                        return;
                     }
                 }
             }
