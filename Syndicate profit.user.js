@@ -151,7 +151,13 @@
         cell1.appendChild(label_to);
         cell1.appendChild(date_picker_end);
         var footer = document.getElementsByClassName("clearfooter")[0];
-        footer.parentNode.insertBefore(table, footer);
+        if(footer !== undefined){
+            footer.parentNode.insertBefore(table, footer);
+        }
+        else
+        {
+            document.body.appendChild(table);
+        }
     }
 
     // Main
