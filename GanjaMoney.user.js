@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         GanjaMoney
-// @namespace    http://ekipogh.ru
+// @namespace    https://github.com/Ekipogh/ganjascripts
 // @version      1
 // @description  displays profit
-// @author       You
+// @author       Ekipogh
 // @match        http://www.ganjawars.ru/me.php
 // @grant        none
 // ==/UserScript==

@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         ganjaterminal
-// @namespace    http://ekipogh.ru/
+// @namespace    https://github.com/Ekipogh/ganjascripts
 // @version      0.1
 // @description  quick buy in terminal
-// @author       You
+// @author       Ekipogh
 // @match        http://www.ganjawars.ru/objects-terminal.php?id=*
 // @grant        none
 // ==/UserScript==

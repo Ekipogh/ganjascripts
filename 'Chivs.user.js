@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         'Chivs
-// @namespace    http://ekipogh.ru
+// @namespace    https://github.com/Ekipogh/ganjascripts
 // @version      0.1
-// @description  displays selected achievs
-// @author       You
-// @match        http://www.ganjawars.ru/me.php
+// @description  Displays achivements on character's page
+// @author       Ekipogh
+// @match        http://www.ganjawars.ru/me.php*
 // @grant        none
 // ==/UserScript==
 function getPage(theUrl, callback) {
