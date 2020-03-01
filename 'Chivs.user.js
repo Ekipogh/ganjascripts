@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         'Chivs
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      0.1
+// @version      0.2
 // @description  Displays achivements on character's page
 // @author       Ekipogh
-// @match        http://www.ganjawars.ru/me.php*
+// @match        http://www.gwars.ru/me.php*
 // @grant        none
 // ==/UserScript==
 function getPage(theUrl, callback) {
@@ -38,4 +38,4 @@ function getChiv(pageText) {
     cell.innerHTML = "<center><a onclick = \"localStorage.setItem('chiv',window.prompt('Описание достижения'));\">" + tdText + "</a></center>";
 }
 
-getPage('http://www.ganjawars.ru/info.ach.php?id=681768', getChiv);
+getPage('http://www.gwars.ru/info.ach.php?id=681768', getChiv);

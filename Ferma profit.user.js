@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Ferma profit
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      0.1
+// @version      0.2
 // @description  Displays profit on ferma!
 // @author       Ekipogh
-// @match        http://www.ganjawars.ru/ferma.php*
+// @match        http://www.gwars.ru/ferma.php*
 // @grant        none
 // ==/UserScript==
 
