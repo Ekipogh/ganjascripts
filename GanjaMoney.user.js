@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GanjaMoney
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      1.3
+// @version      1.4
 // @description  displays profit
 // @author       Ekipogh
 // @match        http://www.gwars.ru/me.php
@@ -67,15 +67,24 @@ function skills() {
     var machineDiff = machineNow - machine;
     var shotgunDiff = shotNow - shotgun;
     var sniperDiff = sniperNow - sniper;
-    $(spans[0]).parent().html($(spans[0]).parent().html() + " " + levelDiff);
-    $(spans[1]).parent().html($(spans[1]).parent().html() + " " + ecoDiff);
-    $(spans[2]).parent().html($(spans[2]).parent().html() + " " + prodDiff);
-    $(spans[3]).parent().html($(spans[3]).parent().html() + " " + pistolDiff);
-    $(spans[4]).parent().html($(spans[4]).parent().html() + " " + grenadesDiff);
-    $(spans[5]).parent().html($(spans[5]).parent().html() + " " + autoDiff);
-    $(spans[6]).parent().html($(spans[6]).parent().html() + " " + machineDiff);
-    $(spans[7]).parent().html($(spans[7]).parent().html() + " " + shotgunDiff);
-    $(spans[8]).parent().html($(spans[8]).parent().html() + " " + sniperDiff);
+    levelDiff = Math.round(levelDiff * 100) / 100;
+    ecoDiff = Math.round(ecoDiff * 100) / 100;
+    prodDiff = Math.round(prodDiff * 100) / 100;
+    pistolDiff = Math.round(pistolDiff * 100) / 100;
+    grenadesDiff = Math.round(grenadesDiff * 100) / 100;
+    autoDiff = Math.round(autoDiff * 100) / 100;
+    machineDiff = Math.round(machineDiff * 100) / 100;
+    shotgunDiff = Math.round(shotgunDiff * 100) / 100;
+    sniperDiff = Math.round(sniperDiff * 100) / 100;
+    $(spans[0]).parent().html($(spans[0]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('level')\">" + levelDiff + "</a>");
+    $(spans[1]).parent().html($(spans[1]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('eco')\">" + ecoDiff + "</a>");
+    $(spans[2]).parent().html($(spans[2]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('prod')\">" + prodDiff + "</a>");
+    $(spans[3]).parent().html($(spans[3]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('pistol')\">" + pistolDiff + "</a>");
+    $(spans[4]).parent().html($(spans[4]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('grenades')\">" + grenadesDiff + "</a>");
+    $(spans[5]).parent().html($(spans[5]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('auto')\">" + autoDiff + "</a>");
+    $(spans[6]).parent().html($(spans[6]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('machine')\">" + machineDiff + "</a>");
+    $(spans[7]).parent().html($(spans[7]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('shotgun')\">" + shotgunDiff + "</a>");
+    $(spans[8]).parent().html($(spans[8]).parent().html() + " <a href=\"#\" style=\"color: red; font-size: 8px\" onclick = \"localStorage.removeItem('sniper')\">" + sniperDiff + "</a>");
 }
 
 $(document).ready(function () {
@@ -85,16 +94,22 @@ $(document).ready(function () {
     }
     var money = localStorage["money"];
     var moneyLast = localStorage["moneyLast"];
+    var incomeStored = localStorage.income;
     var income = 0;
     var diff = 0;
     if (moneyLast != moneyNow) {
         income = moneyNow - moneyLast;
+        localStorage.income = income;
     }
-    if (money != moneyNow) {
-        diff = moneyNow - money;
+    else {
+        income = incomeStored;
+        if (income == undefined) {
+            income = 0;
+        }
     }
+    diff = moneyNow - money;
     var center = $("center")[2];
-    $(center).html($(center).html() + "<a title = \"Предыдущий заработок = " + income + " $\" onclick = \"localStorage.removeItem('money')\" style=\"color: red; font-size: 8px; position: absolute; margin: 2px 0 0 0;\">&nbsp;&nbsp;&nbsp;" + diff + " $ </a>");
+    $(center).html($(center).html() + "<a title = \"Предыдущий заработок = " + income + " $\" onclick = \"localStorage.removeItem('money')\" style=\"color: red; font-size: 8px\">&nbsp;&nbsp;&nbsp;" + diff + " $ </a>");
     localStorage.setItem("moneyLast", moneyNow);
     skills();
 });
