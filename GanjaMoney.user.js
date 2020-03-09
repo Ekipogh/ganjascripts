@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GanjaMoney
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      1.2
+// @version      1.3
 // @description  displays profit
 // @author       Ekipogh
 // @match        http://www.gwars.ru/me.php
@@ -11,7 +11,7 @@
 
 function skills() {
     // current levels
-    var spans = $("#paramsdiv").find("span");
+    var spans = $("#paramsdiv").find("span").not(".font8pt");
     var levelNow = spans[0].textContent;
     var ecoNow = spans[1].textContent;
     var prodNow = spans[2].textContent;
@@ -58,15 +58,15 @@ function skills() {
     var machine = localStorage["machine"];
     var shotgun = localStorage["shotgun"];
     var sniper = localStorage["sniper"];
-    var levelDiff = level - levelNow;
-    var ecoDiff = eco - ecoNow;
-    var prodDiff = prod - prodNow;
-    var pistolDiff = pistol - pistolsNow;
-    var grenadesDiff = grenades - grenadesNow;
-    var autoDiff = auto - autoNow;
-    var machineDiff = machine - machineNow;
-    var shotgunDiff = shotgun - shotNow;
-    var sniperDiff = sniper - sniperNow;
+    var levelDiff = levelNow - level;
+    var ecoDiff = ecoNow - eco;
+    var prodDiff = prodNow - prod;
+    var pistolDiff = pistolsNow - pistol;
+    var grenadesDiff = grenadesNow - grenades;
+    var autoDiff = autoNow - auto;
+    var machineDiff = machineNow - machine;
+    var shotgunDiff = shotNow - shotgun;
+    var sniperDiff = sniperNow - sniper;
     $(spans[0]).parent().html($(spans[0]).parent().html() + " " + levelDiff);
     $(spans[1]).parent().html($(spans[1]).parent().html() + " " + ecoDiff);
     $(spans[2]).parent().html($(spans[2]).parent().html() + " " + prodDiff);
