@@ -4,7 +4,7 @@
 // @version      1.4
 // @description  displays profit
 // @author       Ekipogh
-// @match        http://www.gwars.ru/me.php
+// @match        https://www.gwars.ru/me.php
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // @grant        none
 // ==/UserScript==

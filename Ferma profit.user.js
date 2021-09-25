@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  Displays profit on ferma!
 // @author       Ekipogh
-// @match        http://www.gwars.ru/ferma.php*
+// @match        https://www.gwars.ru/ferma.php*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // @grant        none
 // ==/UserScript==

@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  quick buy in terminal
 // @author       Ekipogh
-// @match        http://www.gwars.ru/objects-terminal.php*
+// @match        https://www.gwars.ru/objects-terminal.php*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // @require https://unpkg.com/axios/dist/axios.min.js
 // @grant        none
@@ -28,8 +28,8 @@ select.appendTo(form);
 form.append(input);
 form.append(button);
 $(form).insertAfter(table);
-$(form).attr("action","#");
-$(form).attr("id","quick_buy");
+$(form).attr("action", "#");
+$(form).attr("id", "quick_buy");
 $("#quick_buy").submit(function () {
     var $form = $(this);
 
@@ -37,8 +37,7 @@ $("#quick_buy").submit(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('id');
-    if (id == null)
-    {
+    if (id == null) {
         console.log("Can't get the terminal ID!");
         return false;
     }
@@ -55,8 +54,7 @@ $("#quick_buy").submit(function () {
         const regex_doit = /id='but(\d+)'/gm;
         var ep = regex_price.exec(data);
         var ed = regex_doit.exec(data);
-        if (ep != null && ed != null)
-        {
+        if (ep != null && ed != null) {
             price = ep[1];
             doit = ed[1];
             var sum = price * amount;
