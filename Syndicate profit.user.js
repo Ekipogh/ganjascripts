@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Syndicate profit
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      0.2.2
+// @version      0.2.3
 // @description  Displays profit for syndicates!
 // @author       Ekipogh
 // @match        https://www.gwars.ru/object.php*

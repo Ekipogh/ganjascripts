@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ganjaterminal
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      0.2
+// @version      0.3
 // @description  quick buy in terminal
 // @author       Ekipogh
 // @match        https://www.gwars.ru/objects-terminal.php*

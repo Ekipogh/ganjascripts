@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         'Chivs
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      0.2
+// @version      0.3
 // @description  Displays achivements on character's page
 // @author       Ekipogh
 // @match        https://www.gwars.ru/me.php*
