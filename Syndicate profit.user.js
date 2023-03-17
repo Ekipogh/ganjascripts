@@ -4,7 +4,7 @@
 // @version      0.2.3
 // @description  Displays profit for syndicates!
 // @author       Ekipogh
-// @match        https://www.gwars.ru/object.php*
+// @match        https://www.gwars.io/object.php*
 // @grant        none
 // ==/UserScript==
 

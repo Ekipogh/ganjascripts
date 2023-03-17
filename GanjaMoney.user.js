@@ -4,23 +4,23 @@
 // @version      1.5
 // @description  displays profit
 // @author       Ekipogh
-// @match        https://www.gwars.ru/me.php
+// @match        https://www.gwars.io/me.php
 // @require https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 // @grant        none
 // ==/UserScript==
 
 function skills() {
     // current levels
-    var spans = $("#paramsdiv").find("span").not(".font8pt");
-    var levelNow = spans[0].textContent;
-    var ecoNow = spans[1].textContent;
-    var prodNow = spans[2].textContent;
-    var pistolsNow = spans[3].textContent;
-    var grenadesNow = spans[4].textContent;
-    var autoNow = spans[5].textContent;
-    var machineNow = spans[6].textContent;
-    var shotNow = spans[7].textContent;
-    var sniperNow = spans[8].textContent;
+    let spans = $("#paramsdiv").find("span").not(".font8pt");
+    let levelNow = spans[0].textContent;
+    let ecoNow = spans[1].textContent;
+    let prodNow = spans[2].textContent;
+    let pistolsNow = spans[3].textContent;
+    let grenadesNow = spans[4].textContent;
+    let autoNow = spans[5].textContent;
+    let machineNow = spans[6].textContent;
+    let shotNow = spans[7].textContent;
+    let sniperNow = spans[8].textContent;
     // populate localStorage
     if (localStorage["level"] == null) {
         localStorage["level"] = levelNow;
@@ -49,24 +49,24 @@ function skills() {
     if (localStorage["sniper"] == null) {
         localStorage["sniper"] = sniperNow;
     }
-    var level = localStorage["level"];
-    var eco = localStorage["eco"];
-    var prod = localStorage["prod"];
-    var pistol = localStorage["pistol"];
-    var grenades = localStorage["grenades"];
-    var auto = localStorage["auto"];
-    var machine = localStorage["machine"];
-    var shotgun = localStorage["shotgun"];
-    var sniper = localStorage["sniper"];
-    var levelDiff = levelNow - level;
-    var ecoDiff = ecoNow - eco;
-    var prodDiff = prodNow - prod;
-    var pistolDiff = pistolsNow - pistol;
-    var grenadesDiff = grenadesNow - grenades;
-    var autoDiff = autoNow - auto;
-    var machineDiff = machineNow - machine;
-    var shotgunDiff = shotNow - shotgun;
-    var sniperDiff = sniperNow - sniper;
+    let level = localStorage["level"];
+    let eco = localStorage["eco"];
+    let prod = localStorage["prod"];
+    let pistol = localStorage["pistol"];
+    let grenades = localStorage["grenades"];
+    let auto = localStorage["auto"];
+    let machine = localStorage["machine"];
+    let shotgun = localStorage["shotgun"];
+    let sniper = localStorage["sniper"];
+    let levelDiff = levelNow - level;
+    let ecoDiff = ecoNow - eco;
+    let prodDiff = prodNow - prod;
+    let pistolDiff = pistolsNow - pistol;
+    let grenadesDiff = grenadesNow - grenades;
+    let autoDiff = autoNow - auto;
+    let machineDiff = machineNow - machine;
+    let shotgunDiff = shotNow - shotgun;
+    let sniperDiff = sniperNow - sniper;
     levelDiff = Math.round(levelDiff * 100) / 100;
     ecoDiff = Math.round(ecoDiff * 100) / 100;
     prodDiff = Math.round(prodDiff * 100) / 100;
@@ -88,15 +88,15 @@ function skills() {
 }
 
 $(document).ready(function () {
-    var moneyNow = $("#cdiv").text().replace(/\,/g, "");
+    let moneyNow = $("#cdiv").text().replace(/\,/g, "");
     if (localStorage["money"] == null) {
         localStorage.setItem("money", moneyNow);
     }
-    var money = localStorage["money"];
-    var moneyLast = localStorage["moneyLast"];
-    var incomeStored = localStorage.income;
-    var income = 0;
-    var diff = 0;
+    let money = localStorage["money"];
+    let moneyLast = localStorage["moneyLast"];
+    let incomeStored = localStorage.income;
+    let income = 0;
+    let diff = 0;
     if (moneyLast != moneyNow) {
         income = moneyNow - moneyLast;
         localStorage.income = income;
@@ -108,7 +108,7 @@ $(document).ready(function () {
         }
     }
     diff = moneyNow - money;
-    var center = $("center")[2];
+    let center = $("center")[2];
     $(center).html($(center).html() + "<a title = \"Предыдущий заработок = " + income + " $\" onclick = \"localStorage.removeItem('money')\" style=\"color: red; font-size: 8px\">&nbsp;&nbsp;&nbsp;" + diff + " $ </a>");
     localStorage.setItem("moneyLast", moneyNow);
     skills();
