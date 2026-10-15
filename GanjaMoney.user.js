@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GanjaMoney
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      1.7
+// @version      1.7.1
 // @description  displays profit
 // @author       Ekipogh
 // @match        https://www.gwars.io/me.php
@@ -27,6 +27,7 @@ function skills() {
         { chart: 'rid=0', storageKey: 'level' },
         { chart: 'rid=1', storageKey: 'eco' },
         { chart: 'rid=2', storageKey: 'prod' },
+        { chart: 'rid=21', storageKey: 'qlevel' },
         { chart: 'cid=3616832250', storageKey: 'pistol' },
         { chart: 'cid=1070787262', storageKey: 'grenades' },
         { chart: 'cid=1710008866', storageKey: 'auto' },
