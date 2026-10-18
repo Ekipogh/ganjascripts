@@ -6,7 +6,7 @@
   * Displays ferma profit
   * [Ferma profit](https://github.com/Ekipogh/ganjascripts/raw/master/Ferma%20profit.user.js)
 * **GanjaMoney**
-  * Displays character profit
+  * Two-column character panel with live HP/AP bars, hidden navigator status, and matching profit styling
   * [GanjaMoney](https://github.com/Ekipogh/ganjascripts/raw/master/GanjaMoney.user.js)
 * **Syndicate profit**
   * Displays syndicates profit on production page
