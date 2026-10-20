@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GanjaMoney
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      1.8.0
+// @version      1.8.1
 // @description  Character dashboard with live HP/AP bars and profit tracking
 // @author       Ekipogh
 // @match        https://www.gwars.io/me.php
@@ -110,7 +110,7 @@ function characterPanel() {
         };
         update();
         // Keep the original counters and timers intact so the game's updates still work.
-        new MutationObserver(update).observe(counter, { childList:true, characterData:true, subtree:true });
+        new MutationObserver(update).observe(counter, { childList: true, characterData: true, subtree: true });
     });
 }
 
@@ -131,6 +131,7 @@ $(document).ready(function () {
         income = moneyNow - moneyLast;
         localStorage.setItem("income", income);
     }
+    const incomeString = `${income > 0 ? '+' : ''}${income.toLocaleString('en-US')} $`;
 
     const totalDiff = moneyNow - money;
 
@@ -139,8 +140,8 @@ $(document).ready(function () {
     profitLink.href = '#';
     profitLink.className = 'greengreenbg_block whitehover nul gm-profit';
     profitLink.dataset.sign = totalDiff < 0 ? 'negative' : totalDiff > 0 ? 'positive' : 'zero';
-    profitLink.textContent = `Прибыль: ${profitAmount}`;
-    profitLink.title = `Предыдущий заработок = ${income.toLocaleString('en-US')} $. Нажмите, чтобы сбросить отсчёт прибыли.`;
+    profitLink.innerHTML = `Прибыль: ${profitAmount} (${incomeString})`;
+    profitLink.title = `Предыдущий заработок = ${incomeString}. Нажмите, чтобы сбросить отсчёт прибыли.`;
     profitLink.addEventListener('click', (event) => {
         event.preventDefault();
         localStorage.removeItem('money');
