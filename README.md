@@ -1,4 +1,10 @@
 # ganjascripts
+* **GWars dark theme**
+  * Site-wide charcoal theme with green accents, readable status colors, and support for GanjaMoney and Ferma profit.
+  * [Install GWars dark theme](https://github.com/Ekipogh/ganjascripts/raw/master/GWars%20dark%20theme.user.js)
+  * With Tampermonkey installed, open the install link and confirm installation. For a local copy, create a new script in Tampermonkey, replace its contents with `GWars dark theme.user.js`, and save.
+  * Reload GWars after installation. Dark mode starts enabled; use **Tampermonkey → GWars dark theme → Toggle GWars dark theme (dark / original)** to switch immediately. The choice is remembered for future pages; reload other open tabs to apply it there.
+  * Covers HTTP/HTTPS on `gwars.io` and `www.gwars.io`. Item images receive a mild dark tint; hover to see their original colors. Logos and map graphics retain their original colors. Unseen page-specific styles may need additional overrides.
 * **'Chivs**
   * Displays selected achivement on character page
   * ['Chivs](https://github.com/Ekipogh/ganjascripts/raw/master/'Chivs.user.js)
