@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GWars dark theme
 // @namespace    https://github.com/Ekipogh/ganjascripts
-// @version      1.0.1
+// @version      1.0.4
 // @description  Charcoal and green dark theme for GWars, with a remembered menu toggle
 // @author       Ekipogh
 // @match        *://gwars.io/*
@@ -58,6 +58,10 @@
                 rule(`[bgcolor="${value}" i]`, `background-color:${target} !important;`);
             } else if (property === 'color') {
                 rule(`font[color="${value}" i]`, `color:${target} !important;`);
+                // Battle logs also use legacy hexadecimal font colors without '#'.
+                if (/^#[0-9a-f]{6}$/i.test(value)) {
+                    rule(`font[color="${value.slice(1)}" i]`, `color:${target} !important;`);
+                }
             }
         }
     }
@@ -69,9 +73,11 @@
     rule('a:hover,a.nul:hover', 'color:#c4f5d0 !important;');
     rule('a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible', 'outline:2px solid #a0dcb1 !important;outline-offset:2px;');
 
-    const panelColors = '#ffffff #fff white #f5fff5 #f0fff0 #e9ffe9 #e0ffe0 #e0eee0 #d0f5d0 #f0f0f0 #e0e0e0 #d0d5d0 #d0f3d0';
+    const panelColors = '#ffffff #fff white #f9fff9 #f5fff5 #f0fff0 #e9ffe9 #e0ffe0 #e0eee0 #d0f5d0 #f0f0f0 #e0e0e0 #d0d5d0 #d0f3d0';
     const headerColors = '#d0eed0 #a0dda0 #c4e1c4 #bdefbd #bae6da #b9efb9 #b3dbb3';
-    for (const [values, target] of [[panelColors, 'var(--gwd-panel)'], [headerColors, 'var(--gwd-header)'], ['#eed0d0 #fff0f0 #f6dccf', '#452d2d'], ['#f0f0ff', '#29354b']]) {
+    // Forum mouse handlers change bgcolor directly; map both stripes and hover
+    // colors so those updates stay dark without rewriting the site's attributes.
+    for (const [values, target] of [[panelColors, 'var(--gwd-panel)'], [headerColors, 'var(--gwd-header)'], ['#e0ebe0', '#28312d'], ['#e8f8e8', 'var(--gwd-hover)'], ['#eed0d0 #fff0f0 #ffe0e0 #f6dccf', '#452d2d'], ['#f0f0ff', '#29354b']]) {
         colorRules('background-color', values, target);
         // Shorthands need their color replaced too, but leave background images intact.
         colorRules('background', values, target);
@@ -113,6 +119,41 @@
         rule(classes, `color:${target} !important;`);
         colorRules('color', values, target);
     }
+
+    // Battle team/weapon headings keep their red, blue and green distinctions.
+    rule('.redhead[bgcolor="#990000" i]', 'background:#452d2d !important;');
+    rule('.redhead[bgcolor="#000099" i],.redhead[bgcolor="#0000aa" i]', 'background:#29354b !important;');
+    rule('.redhead[bgcolor="#006600" i],.redhead[bgcolor="#003300" i]', 'background:#294431 !important;');
+    rule('.redhead', 'color:var(--gwd-text) !important;');
+
+    // Forum search results and custom checkbox use page-specific backgrounds.
+    rule('#fsearch_page .rtbl,#fsearch_box .ftglbox', 'background:var(--gwd-panel) !important;border-color:var(--gwd-border) !important;');
+    rule('#fsearch_box .ftglbox:after', 'background:var(--gwd-muted) !important;');
+    rule('#fsearch_box .ftgl:checked + .ftglbox', 'background:var(--gwd-hover) !important;');
+    rule('#fsearch_box .ftgl:checked + .ftglbox:after', 'background:var(--gwd-green) !important;');
+    rule('#fsearch_page .fprev b', 'background:var(--gwd-header) !important;color:var(--gwd-green) !important;');
+
+    // Operations define their own stylesheet, including panels loaded after navigation.
+    rule('table.opbar', 'background:var(--gwd-page) !important;border-color:var(--gwd-border) !important;');
+    rule('table.opbar td.opbarskill,table.opbar td.opst,.ophead,.opmhead,.opcardhead,.opclass.opalt', 'background:var(--gwd-header) !important;');
+    rule('.opcard,.opempty,.opsearch,.oparch,.opclass,.opmodal,.opalarm,.opstory,.opfact,.opcatalogclosed,.optabs a,.optabs span', 'background:var(--gwd-panel) !important;');
+    rule('.opcataloglocked', 'background:var(--gwd-page) !important;');
+    rule('.optabs a.opon', 'background:var(--gwd-header) !important;color:var(--gwd-text) !important;');
+    rule('.optabs a:not(.oplocked):hover', 'background:var(--gwd-hover) !important;');
+    rule('.ophead,.opcard,.opsearch,.opalarm,.opstory,.opgains,.opclasses,.opclass,.opcataloglocked', 'border-color:var(--gwd-border) !important;');
+    rule('.ophead,.opbad,.op .opstar.opstaron', 'color:var(--gwd-red) !important;');
+    rule('.opok,.op .opmk.opmkon', 'color:var(--gwd-green) !important;');
+    rule('table.opbar .opsm,.opsm,.opfl,.opmeta,.opheadnum,.opempty,.opbadge,.opcheck,.opmhead .opmx,.opgl,.opcataloghint,.opresourcewait,.opcatalogclosed,.opcatalogclosedstate,.opunknown,.opclasslocked,.optabs span,.optabs a.oplocked,.op .opstar,.op .opmk', 'color:var(--gwd-muted) !important;');
+    rule('.opb', 'background:var(--gwd-header) !important;color:var(--gwd-link) !important;');
+    rule('.opb:hover', 'background:var(--gwd-hover) !important;');
+    rule('.opb.oppri', 'background:#294431 !important;color:var(--gwd-text) !important;');
+    rule('.opb.oppri:hover', 'background:var(--gwd-hover) !important;');
+    rule('.opb[disabled],.opb[disabled]:hover,.opb.opoff,.opb.opoff:hover', 'background:var(--gwd-panel) !important;color:var(--gwd-muted) !important;');
+    rule('.opfader', 'background:rgba(0,0,0,.65) !important;');
+    rule('.opmodal', 'box-shadow:0 5px 18px #0009 !important;');
+    rule('.opdots span', 'background:var(--gwd-green) !important;');
+    rule('.opclistcard', 'border-color:var(--gwd-border) !important;');
+    rule('.opclistdesc,.opclistexp,.opclistempty', 'color:var(--gwd-muted) !important;');
 
     // Override the injected GanjaMoney styles regardless of installation order.
     rule('.gm-character .gm-meter', 'background:linear-gradient(to right,var(--gm-fill) var(--gm-value),transparent var(--gm-value)),var(--gwd-panel) !important;box-shadow:inset 0 0 0 1px var(--gwd-border) !important;');
