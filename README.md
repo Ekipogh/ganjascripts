@@ -9,7 +9,7 @@
   * Displays selected achivement on character page
   * ['Chivs](https://github.com/Ekipogh/ganjascripts/raw/master/'Chivs.user.js)
 * **Ferma profit**
-  * Displays ferma profit
+  * Displays farm profit and harvested production XP. Space opens the “Ближайшее действие” link; Enter prefers “Собрать весь урожай” (`exall=1`), falling back to the current farm action. Shortcuts ignore typing fields and held-key repeats.
   * [Ferma profit](https://github.com/Ekipogh/ganjascripts/raw/master/Ferma%20profit.user.js)
 * **GanjaMoney**
   * Two-column character panel with live HP/AP bars, hidden navigator status, and matching profit styling
